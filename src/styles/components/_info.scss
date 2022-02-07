@@ -1,0 +1,21 @@
+.info-alt {
+    padding: 5px 0;
+}
+
+.info {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 45px;
+        height: 45px;
+        margin-right: 7px;
+    }
+}
+
+.info__location-general {
+    color: var(--dark-color);
+    font-weight: 700;
+    margin-bottom: 5px;
+}

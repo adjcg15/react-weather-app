@@ -1,0 +1,27 @@
+.resumecard {
+    background-color: var(--light-bg);
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.resumecard__resume {
+    text-align: left;
+}
+
+.resumecard.active {
+    background-color: rgb(60, 60, 60, 0.3);
+}
+
+.resumecard__date, .resumecard__temperature {
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.resumecard__temperature {
+    font-size: 22px;
+}
+
+.resumecard__img {
+    width: 50px;
+}
