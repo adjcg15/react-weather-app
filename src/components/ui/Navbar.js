@@ -23,7 +23,7 @@ export const Navbar = () => {
     
     return (
         <>
-            <div 
+            <nav 
                 className={ `navbar basic-short-transition ${isOpen && 'navbar-open'} `}
                 onClick={ handleOutsideClose }
             >
@@ -112,7 +112,7 @@ export const Navbar = () => {
                         </nav>
                     </div>
                 </aside>
-            </div>
+            </nav>
 
             <div className="navbar__open">
                 <button className="navbar__open-btn pointer" onClick={ handleOpen }>

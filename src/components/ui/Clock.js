@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-export const Clock = () => {
+export const Clock = React.memo(({className = 'clock'}) => {
     const date = new Date();
     const [time, setTime] = useState({
         hours: date.getHours(),
         minutes: date.getMinutes()
     });
-    
 
     useEffect(() => {
 
@@ -22,11 +21,11 @@ export const Clock = () => {
         return () => clearInterval(timer)
     }, []);
 
-    const {hours, minutes} = time;
+    const { hours, minutes } = time;
 
     return (
-        <div className="home__clock">
+        <div className={ className }>
             <p>{hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}</p>
         </div>
     )
-};
+});

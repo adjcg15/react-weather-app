@@ -2,6 +2,12 @@
     margin-top: 0;
 }
 
+.dashboard__title {
+    margin-bottom: 15px;
+    color: var(--dark-color);
+    display: none;
+}
+
 .dashboard__date {
     text-align: right;
 }

@@ -1,12 +1,7 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import { startFullLocationUpdating } from '../../actions/location';
-
-export const CurrentButton = () => {
-    const dispatch = useDispatch();
-
+export const CurrentButton = React.memo(({ setCoordinates }) => {
     const getUserLocation = useCallback(() => {
         
         if(!navigator.geolocation) {
@@ -20,12 +15,10 @@ export const CurrentButton = () => {
         }
 
         const success = (location) => {
-            dispatch(
-                startFullLocationUpdating({
-                    lat: location.coords.latitude,
-                    lng: location.coords.longitude
-                })
-            );
+            setCoordinates({
+                lat: location.coords.latitude,
+                lng: location.coords.longitude
+            });
         }
 
         const error = () => {
@@ -39,14 +32,14 @@ export const CurrentButton = () => {
         }
 
         navigator.geolocation.getCurrentPosition(success, error);
-    }, [dispatch]);
+    }, [setCoordinates]);
 
     return (
         <button 
-            className="location__button location__buttons-current pointer basic-short-transition"
+            className="locationbutton locationbutton-current pointer basic-short-transition"
             onClick={ getUserLocation }
         >
             Current location
         </button>
     );
-};
+});

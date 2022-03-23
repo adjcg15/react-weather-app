@@ -1,27 +1,53 @@
 .resumecard {
-    background-color: var(--light-bg);
+    border: 2px solid rgb(60, 60, 60, 0.4);
     border-radius: 20px;
     text-align: center;
     padding: 10px 20px;
-}
-
-.resumecard__resume {
-    text-align: left;
+    margin-right: 0 !important;
 }
 
 .resumecard.active {
-    background-color: rgb(60, 60, 60, 0.3);
+    border-color: var(--disabled-primary);
 }
 
-.resumecard__date, .resumecard__temperature {
-    color: var(--dark-color);
-    font-weight: 700;
+.resumecard {
+    .resume__date {
+        font-size: 12px;
+    }
+
+    .resume__date, .resume__temperature {
+        color: var(--dark-color);
+        font-weight: 700;
+    }
+
+    .resume__temperature {
+        font-size: 22px;
+        margin-bottom: 7px;
+    }
+
+    .resume__weather {
+        color: var(--text-color);
+    }
+
+    .resume__img {
+        width: 50px;
+        height: 50px;
+    }
 }
 
-.resumecard__temperature {
-    font-size: 22px;
-}
+.resumecard.weekly {
+    display: flex;
+    align-items: center;
 
-.resumecard__img {
-    width: 50px;
+    .resume{
+        text-align: left;
+    }
+
+    .resume__date {
+        white-space: nowrap;
+    }
+    
+    .resume__temperature {
+        margin: 5px 0 0;
+    }
 }

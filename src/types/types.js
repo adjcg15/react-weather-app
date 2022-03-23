@@ -7,9 +7,4 @@ export const types = {
     updateAllWeatherData: '[weather] All weather data updated',
     changeActiveHour: '[weather] Active hour updated',
     changeActiveDay: '[weather] Active day updated'
-    // updateCurrentWeather: '[weather] Current weather updated',
-    // updateDailyForecast: '[weather] Daily forecast updated',
-    // updateHourWeather: '[weather] Active hour weather updated',
-    // updateWeeklyForecast: '[weather] Weekly forecast updated',
-    // updateDayWeather: '[weather] Active day weather updated'
 }

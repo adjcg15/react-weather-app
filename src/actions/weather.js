@@ -1,3 +1,5 @@
+import { anHourPassed } from '../helpers/getTimeDifference';
+import { getLocalStorageValue } from '../helpers/localStorage';
 import { types } from '../types/types';
 
 export const updateAllWeatherData = (data) => {
@@ -17,6 +19,28 @@ const errorFetching = (error) => ({
     type: types.errotFetching,
     payload: error
 });
+
+export const startWeatherUpdate = (coordinates) => {
+    return async (dispatch) => {
+        const weatherStored = getLocalStorageValue('weather');
+
+        if(!weatherStored.stored) {
+            dispatch(
+                startFetchingWeatherData(coordinates)
+            );
+        } else {
+            if(anHourPassed(Math.floor(Date.now()/1000) - weatherStored.value.current.dt)) {
+                return dispatch(
+                    startFetchingWeatherData(coordinates)
+                );
+            }
+
+            dispatch(
+                updateAllWeatherData(weatherStored.value)
+            )
+        }
+    }
+}
 
 export const startFetchingWeatherData = (coordinates) => {
     return async (dispatch) => {
@@ -46,31 +70,7 @@ export const updateHour = (id) => ({
     payload: id
 });
 
-export const udateDay = (id) => ({
+export const updateDay = (id) => ({
     type: types.changeActiveDay,
     payload: id
 });
-// const updateCurrentWeather = (current = {}) => ({
-//     type: types.updateCurrentWeather,
-//     payload: current
-// });
-
-// const updateDailyForecast = (forecast = []) => ({
-//     type: types.updateDailyForecast,
-//     payload: forecast
-// });
-
-// const updateHourWeather = (weather = {}) => ({
-//     type: types.updateHourWeather,
-//     payload: weather
-// });
-
-// const updateWeeklyForecast = (forecast = []) => ({
-//     type: types.updateWeeklyForecast,
-//     payload: forecast
-// });
-
-// const updateDayWeather = (weather = {}) => ({
-//     type: types.updateDayWeather,
-//     payload: weather
-// });

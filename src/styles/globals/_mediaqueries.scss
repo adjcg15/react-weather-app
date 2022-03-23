@@ -1,0 +1,165 @@
+@media screen and (min-width: 480px) {
+    .dashboard__content {
+        width: 80%;
+    }
+
+    .resumecard.weekly {
+        width: 70%;
+    }
+
+    .resumecard.daily {
+        width: 110%;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .dashboard__content {
+        width: 64%;
+    }
+
+    .locationbuttons {
+        padding: 0 0 20px;
+    }
+
+    .home {
+        display: flex;
+    }
+
+    .home__img {
+        position: relative;
+    }
+
+    .home__content {
+        color: var(--dark-color);
+    }
+
+    .location__container {
+        width: 70%;
+
+        .locationbuttons {
+            position: relative;
+
+            .locationbuttons__content {
+                width: 80%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .weather-content {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .navbar {
+        position: relative;
+        width: fit-content;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .navbar__container {
+        width: fit-content;
+        display: flex;
+        position: fixed;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .navbar__close, 
+    .navbar__title , 
+    .navbar__open {
+        display: none;
+    }
+
+    .navbar__container-content {
+        width: 100%;
+    }
+
+    .navbar__navigation ul li {
+        margin-bottom: 25px;
+
+        p {
+            display: none;
+        }
+    }
+
+    .navbar__navigation ul li:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    .dashboard {
+        margin-left: 60px;
+        height: 100%;
+        overflow: auto;
+        flex: 1 1 auto;
+    }
+
+    .dashboard__content {
+        width: 92%;
+        padding-top: 30px;
+    }
+
+    .dashboard__view {
+        margin: 20px 0;
+    }
+
+    .dashboard__title {
+        display: block;
+    }
+
+    .current__general {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 35px;
+
+        .graphforecast:last-of-type {
+            margin: 0;
+        }
+    }
+
+    .weathercard {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fetching-error.full-screen, .weather-spinner.full-screen {
+        height: 100%;
+    }
+
+    .dashboard__swiper {
+        margin: 25px 0;
+    }
+    
+    .resumecard.weekly {
+        width: auto;
+    }
+
+    .map {
+        height: 60vh;
+    }
+
+    .locationbuttons {
+        width: 40%;
+    }
+
+    .location__container {
+        .locationbuttons {
+            .locationbuttons__content {
+                width: 40%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .dashboard__content {
+        width: 85%;
+    }
+}

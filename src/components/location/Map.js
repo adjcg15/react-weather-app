@@ -2,8 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Autocomplete, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 import mapStyles from '../../helpers/mapStyles';
-import { useDispatch, useSelector } from 'react-redux';
-import { startFullLocationUpdating} from '../../actions/location';
 import { Spinner } from '../ui/Spinner';
 
 const libraries = ['places'];
@@ -26,65 +24,58 @@ const center = {
     lng: -102.5
 }
 
-export const Map = React.memo(() => {
-    const dispatch = useDispatch();
-    const { coordinates } = useSelector(state => state.location);
+export const Map = React.memo(({ coordinates, setCoordinates }) => {
+    const [autocomplete, setAutocomplete] = useState(null);
+    const [search, setSearch] = useState('');
+    const mapRef = useRef(null);
 
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GEOKEY,
         libraries
     });
 
-    const [autocomplete, setAutocomplete] = useState(null);
-    const [search, setSearch] = useState('');
-
-    const handleMapClick = useCallback((e) => {
-        setSearch('');
-
-        dispatch(
-            startFullLocationUpdating({
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng()
-            })
-        );
-
-    }, [dispatch]);
-
-    const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, []);
+    
+    const handleMapClick = useCallback((e) => {
+        setSearch('');
 
-    const handleAutocompleteLoad = (autocomplete) => {
+        setCoordinates({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+        });
+
+    }, [setCoordinates]);
+
+    const handleInputChange = useCallback((e) => {
+        setSearch(e.target.value);
+    }, []);
+
+    const handleAutocompleteLoad = useCallback((autocomplete) => {
         setAutocomplete(autocomplete);
-    }
+    }, []);
 
-    const onPlaceChanged = () => {
+    const onPlaceChanged = useCallback(() => {
         const returnInfo = autocomplete.getPlace();
         // console.log(returnInfo);
 
         setSearch('');
         
         if(returnInfo.geometry) {
-            dispatch(
-                startFullLocationUpdating({
-                    lat: returnInfo.geometry.location.lat(),
-                    lng: returnInfo.geometry.location.lng()
-                })
-            );
+            setCoordinates({
+                lat: returnInfo.geometry.location.lat(),
+                lng: returnInfo.geometry.location.lng()
+            })
         }
-    }
-
-    const handleInputChange = (e) => {
-        setSearch(e.target.value);
-    }
+    }, [autocomplete, setCoordinates]);
 
     if(loadError) {
         return <div>Map cannot be loaded right now, sorry</div>
     }
 
     return (
-        <div className="location__map">
+        <div className="map">
             {
                 isLoaded 
                     ? 
@@ -92,7 +83,7 @@ export const Map = React.memo(() => {
                         <GoogleMap
                             mapContainerStyle={ mapContainerStyle }
                             zoom={ 4 }
-                            center={ coordinates.hasOwnProperty('lng') ? coordinates : center }
+                            center={ (coordinates.lat && coordinates.lng) ? coordinates : center }
                             options={ options }
                             onClick={ handleMapClick }
                             onLoad={ onMapLoad }
@@ -131,7 +122,7 @@ export const Map = React.memo(() => {
                                 />
                             </Autocomplete>
                             {
-                                coordinates.hasOwnProperty('lng') && 
+                                (coordinates.lat && coordinates.lng) && 
                                 <Marker position={ coordinates } />
                             }
                         </GoogleMap>

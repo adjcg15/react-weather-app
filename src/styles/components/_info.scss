@@ -1,11 +1,33 @@
-.info-alt {
-    padding: 5px 0;
+.locationinfo {
+    padding: 15px 0;
 }
 
-.info {
-    padding: 15px 0;
+.locationinfo__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.locationinfo__error {
+    padding-top: 7px;
+
+    h3 {
+        color: red;
+    }
+}
+
+.locationinfo__loading {
+    padding: 10px 0;
+}
+
+.locationinfo__loading p {
+    text-align: center;
+}
+
+.locationinfo__success {
     display: flex;
     align-items: center;
+    padding-top: 7px;
 
     svg {
         width: 45px;
@@ -14,7 +36,7 @@
     }
 }
 
-.info__location-general {
+.locationinfo__city {
     color: var(--dark-color);
     font-weight: 700;
     margin-bottom: 5px;

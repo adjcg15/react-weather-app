@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home } from '../components/home/Home';
-import { Location } from '../components/location/Location';
-import { ErrorScreen } from '../components/ui/ErrorScreen';
-import { WeatherScreen } from '../components/weather/WeatherScreen';
+
+import { HomeView } from '../views/HomeView';
+import { LocationView } from '../views/LocationView';
+import { NotFoundScreen } from '../views/NotFoundScreen';
+import { WeatherScreen } from '../views/WeatherScreen';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
     return (
@@ -12,24 +15,36 @@ export const AppRouter = () => {
                 <Route 
                     exact
                     path="/"
-                    element={ <Home /> }
+                    element={ 
+                        <PublicRoute>
+                            <HomeView />
+                        </PublicRoute>
+                    }
                 />
 
                 <Route 
                     exact 
                     path="/location"
-                    element={ <Location /> }
+                    element={ 
+                        <PublicRoute>
+                            <LocationView />
+                        </PublicRoute>
+                    }
                 />
 
                 <Route 
                     exact
                     path="/weather/*"
-                    element={ <WeatherScreen /> }
+                    element={
+                        <PrivateRoute>
+                            <WeatherScreen />
+                        </PrivateRoute>
+                    }
                 />
 
                 <Route
                     path="/*"
-                    element={ <ErrorScreen /> }
+                    element={ <NotFoundScreen /> }
                 />
             </Routes>
         </BrowserRouter>

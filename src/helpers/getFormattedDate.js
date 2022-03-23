@@ -16,8 +16,15 @@ export const getHour = (seconds = 0) => {
 }
 
 export const getDay = (seconds = 0) => {
-  const date = new Date(seconds * 1000);
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(seconds * 1000);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  return `${days[date.getDay()]} ${date.getDate()}`;
+    return `${days[date.getDay()]} ${date.getDate()}`;
+}
+
+export const getShortDay = (seconds = 0, dayLenght = 2) => {
+    const date = new Date(seconds * 1000);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    return `${days[date.getDay()].slice(0, dayLenght)} ${date.getDate()}`;
 }

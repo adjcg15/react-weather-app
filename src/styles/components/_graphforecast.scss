@@ -1,0 +1,47 @@
+.graphforecast {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+}
+
+.graphforecast__bar {
+    margin: 13px 0;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(60, 60, 60, 0.4);
+    border-radius: 15px;
+
+    .graphforecast__bar-element:first-of-type {
+        border-left: none;
+    }
+}
+
+.graphforecast__bar-element {
+    padding: 7px 0;
+    flex-basis: 0;
+    flex-grow: 1;
+    text-transform: capitalize;
+    color: var(--text-color);
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    border-left: 1px solid rgb(60, 60, 60, 0.4);
+    font-weight: 700;
+
+    &:hover {
+        color: var(--dark-color);
+    }
+}
+
+.graphforecast__bar-element.active {
+    color: var(--primary-color);
+}
+
+.graphforecast__title {
+    color: var(--dark-color);
+}
+
+.graphforecast__graph {
+    height: 170px;
+}
